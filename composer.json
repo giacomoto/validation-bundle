@@ -1,0 +1,22 @@
+{
+    "name": "luckyseven/validation",
+    "description": "Symfony Validation based on Symfony Validator and  Rollerworks PasswordStrengthValidator",
+    "type": "symfony-bundle",
+    "minimum-stability": "stable",
+    "version": "1.0",
+    "require": {
+        "symfony/validator": "6.1.*",
+        "rollerworks/password-strength-bundle": "^2.2"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Luckyseven\\Bundle\\LuckysevenValidationBundle\\": ""
+        }
+    },
+    "authors": [
+        {
+            "name": "Luckyseven S.r.l."
+        }
+    ]
+}

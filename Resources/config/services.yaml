@@ -1,0 +1,9 @@
+parameters:
+
+services:
+    Luckyseven\Bundle\LuckysevenValidationBundle\Service\ValidationFactoryService:
+
+    Luckyseven\Bundle\LuckysevenValidationBundle\Service\ValidationService:
+        arguments:
+            $validator: '@validator'
+            $validationFactoryService: '@Luckyseven\Bundle\LuckysevenValidationBundle\Service\ValidationFactoryService'
