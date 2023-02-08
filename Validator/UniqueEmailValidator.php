@@ -40,7 +40,7 @@ class UniqueEmailValidator extends ConstraintValidator
         // }
 
         if ($constraint->entity) {
-            $data = $this->entityManager->getRepository($constraint->entity)->findBy(['email' => $value]);
+            $data = $this->entityManager->getRepository($constraint->entity)->findBy([$constraint->fieldName => $value]);
             foreach ($data as $datum) {
                 if (!in_array($datum->getId(), $constraint->notIn)) {
                     $this->context->buildViolation($constraint->message)
