@@ -5,7 +5,7 @@
     "minimum-stability": "stable",
     "version": "1.0",
     "require": {
-        "symfony/validator": "6.1.*",
+        "symfony/validator": "6.2.*",
         "rollerworks/password-strength-bundle": "^2.2"
     },
     "license": "MIT",
