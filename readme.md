@@ -24,7 +24,7 @@ Luckyseven Validation Bundle uses Symfony's Validation bundle and Rolleworks Pas
 ## Install
 ```
 composer require luckyseven/validation:dev-main
-composer recipes:install luckyseven/jwt-auth --force -v
+composer recipes:install luckyseven/validation --force -v
 ```
 
 ## Usage
