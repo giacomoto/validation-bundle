@@ -11,10 +11,11 @@ trait EmailConstraintTrait
 {
     /**
      * @param string|null $entity
+     * @param string $fieldName
      * @param array $notIn
      * @return array
      */
-    protected function isTypeEmail(string $entity = null, array $notIn = []): array
+    protected function isTypeEmail(string $entity = null, string $fieldName = 'email', array $notIn = []): array
     {
         $collection = [
             new NotBlank(),
@@ -22,7 +23,7 @@ trait EmailConstraintTrait
             new Email(),
         ];
         if ($entity) {
-            $collection[] = new UniqueEmail($entity, $notIn);
+            $collection[] = new UniqueEmail($entity, $fieldName, $notIn);
         }
         return $collection;
     }
