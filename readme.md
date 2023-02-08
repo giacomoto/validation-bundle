@@ -21,6 +21,11 @@ Luckyseven Validation Bundle uses Symfony's Validation bundle and Rolleworks Pas
 }
 ```
 
+## Make the repository trusted
+```bash
+git config --global --add safe.directory /var/www/html/vendor/luckyseven/validation
+```
+
 ## Install
 ```
 composer require luckyseven/validation:dev-main
