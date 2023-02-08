@@ -7,3 +7,8 @@ services:
         arguments:
             $validator: '@validator'
             $validationFactoryService: '@Luckyseven\Bundle\LuckysevenValidationBundle\Service\ValidationFactoryService'
+
+    Luckyseven\Bundle\LuckysevenValidationBundle\Validator\UniqueEmailValidator:
+        tags: { name: validator.constraint_validator }
+        arguments:
+            $entityManager: '@Doctrine\ORM\EntityManagerInterface'
