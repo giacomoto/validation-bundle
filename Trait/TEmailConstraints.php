@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-trait EmailConstraintTrait
+trait TEmailConstraints
 {
     /**
      * @param string|null $entity

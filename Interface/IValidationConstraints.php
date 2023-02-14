@@ -4,7 +4,7 @@ namespace Luckyseven\Bundle\LuckysevenValidationBundle\Interface;
 
 use Symfony\Component\Validator\Constraints\Collection;
 
-interface ValidationConstraintInterface
+interface IValidationConstraints
 {
     public function getConstraints(): Collection;
 }

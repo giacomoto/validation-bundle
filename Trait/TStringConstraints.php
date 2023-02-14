@@ -6,7 +6,7 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Type;
 
-trait StringConstraintTrait
+trait TStringConstraints
 {
     /**
      * @param int $maxLength

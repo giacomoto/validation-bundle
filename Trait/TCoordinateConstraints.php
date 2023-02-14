@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraints\LessThanOrEqual;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Type;
 
-trait CoordinateConstraintTrait
+trait TCoordinateConstraints
 {
     /**
      * @return array

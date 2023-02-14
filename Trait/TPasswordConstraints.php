@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Type;
 use Rollerworks\Component\PasswordStrength\Validator\Constraints as RollerworksPassword;
 
-trait PasswordConstraintTrait
+trait TPasswordConstraints
 {
     /**
      * @param int $maxLength

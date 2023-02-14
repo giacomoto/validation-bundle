@@ -4,19 +4,18 @@ namespace Luckyseven\Bundle\LuckysevenValidationBundle\Trait;
 
 use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\Type;
 
-trait BoolConstraintTrait
+trait TChoiceConstraints
 {
     /**
+     * @param array $choices
      * @return array
      */
-    public function isTypeBool(): array
+    public function isTypeChoice(array $choices): array
     {
         return [
             new NotBlank(),
-            new Type('bool'),
-            new Choice([true, false]),
+            new Choice($choices),
         ];
     }
 }

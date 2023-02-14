@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints\Positive;
 use Symfony\Component\Validator\Constraints\PositiveOrZero;
 use Symfony\Component\Validator\Constraints\Type;
 
-trait IntegerConstraintTrait
+trait TIntegerConstraints
 {
     /**
      * @return array
