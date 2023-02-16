@@ -3,7 +3,7 @@
 namespace Luckyseven\Bundle\LuckysevenValidationBundle\Trait;
 
 use Symfony\Component\Validator\Constraints\Choice;
-use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Constraints\Type;
 
 trait TBoolConstraints
@@ -14,7 +14,7 @@ trait TBoolConstraints
     public function isTypeBool(): array
     {
         return [
-            new NotBlank(),
+            new NotNull(),
             new Type('bool'),
             new Choice([true, false]),
         ];
