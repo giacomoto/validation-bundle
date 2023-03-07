@@ -1,7 +1,7 @@
 parameters:
 
 services:
-    Luckyseven\Bundle\LuckysevenValidationBundle\Class\BaseValidation:
+    Luckyseven\Bundle\LuckysevenValidationBundle\Class\BaseConstraint:
         arguments:
             $security: '@Symfony\Bundle\SecurityBundle\Security'
             $parameterBag: '@parameter_bag'
