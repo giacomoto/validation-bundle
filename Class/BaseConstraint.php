@@ -7,7 +7,7 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 use Luckyseven\Bundle\LuckysevenValidationBundle\Interface\IValidationConstraints;
 
-abstract class BaseValidation implements IValidationConstraints
+abstract class BaseConstraint implements IValidationConstraints
 {
     public function __construct(
         protected Security $security,
