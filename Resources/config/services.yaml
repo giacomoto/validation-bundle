@@ -1,14 +1,22 @@
 parameters:
 
 services:
+    Luckyseven\Bundle\LuckysevenValidationBundle\Class\BaseValidation:
+        arguments:
+            $security: '@Symfony\Bundle\SecurityBundle\Security'
+            $parameterBag: '@parameter_bag'
+
     Luckyseven\Bundle\LuckysevenValidationBundle\Service\ValidationFactoryService:
+        arguments:
+            $security: '@Symfony\Bundle\SecurityBundle\Security'
+            $parameterBag: '@parameter_bag'
 
     Luckyseven\Bundle\LuckysevenValidationBundle\Service\ValidationService:
         arguments:
             $validator: '@validator'
             $validationFactoryService: '@Luckyseven\Bundle\LuckysevenValidationBundle\Service\ValidationFactoryService'
 
-    Luckyseven\Bundle\LuckysevenValidationBundle\Validator\UniqueEmailValidator:
+    Luckyseven\Bundle\LuckysevenValidationBundle\Validator\UniqueConstraintValidator:
         tags: { name: validator.constraint_validator }
         arguments:
             $entityManager: '@Doctrine\ORM\EntityManagerInterface'

@@ -1,21 +1,18 @@
 <?php
 
-namespace Luckyseven\Bundle\LuckysevenValidationBundle\Service;
+namespace Luckyseven\Bundle\LuckysevenValidationBundle\Class;
 
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
-class ValidationFactoryService
+use Luckyseven\Bundle\LuckysevenValidationBundle\Interface\IValidationConstraints;
+
+abstract class BaseValidation implements IValidationConstraints
 {
     public function __construct(
         protected Security $security,
         protected ParameterBagInterface $parameterBag,
     )
     {
-    }
-
-    public function getConstraints(string $validatorClass)
-    {
-        return (new $validatorClass($this->security, $this->parameterBag))->getConstraints();
     }
 }

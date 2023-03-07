@@ -28,6 +28,9 @@ git config --global --add safe.directory /var/www/html/vendor/luckyseven/validat
 
 ## Install
 ```
+composer require symfony/orm-pack
+composer require symfony/security-bundle
+
 composer require luckyseven/validation:dev-main
 composer recipes:install luckyseven/validation --force -v
 ```

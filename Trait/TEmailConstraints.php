@@ -10,21 +10,14 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 trait TEmailConstraints
 {
     /**
-     * @param string|null $entity
-     * @param string $fieldName
-     * @param array $notIn
      * @return array
      */
-    protected function isTypeEmail(string $entity = null, string $fieldName = 'email', array $notIn = []): array
+    protected function isTypeEmail(): array
     {
-        $collection = [
+        return [
             new NotBlank(),
             new Length(['min' => 3, 'max' => 255]),
             new Email(),
         ];
-        if ($entity) {
-            $collection[] = new UniqueEmail($entity, $fieldName, $notIn);
-        }
-        return $collection;
     }
 }

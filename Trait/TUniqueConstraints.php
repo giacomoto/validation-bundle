@@ -8,7 +8,7 @@ use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Exception\UnexpectedValueException;
 
-class UniqueEmailValidator extends ConstraintValidator
+class UniqueConstraintValidator extends ConstraintValidator
 {
     public function __construct(protected EntityManagerInterface $entityManager)
     {
@@ -16,8 +16,8 @@ class UniqueEmailValidator extends ConstraintValidator
 
     public function validate($value, Constraint $constraint)
     {
-        if (!$constraint instanceof UniqueEmail) {
-            throw new UnexpectedTypeException($constraint, UniqueEmail::class);
+        if (!$constraint instanceof UniqueConstraint) {
+            throw new UnexpectedTypeException($constraint, UniqueConstraint::class);
         }
 
         // custom constraints should ignore null and empty values to allow
