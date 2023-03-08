@@ -51,6 +51,12 @@ class UniqueConstraintValidator extends ConstraintValidator
                         break;
                     }
                 }
+            } else {
+                if (count($data) > 0) {
+                    $this->context->buildViolation($constraint->message)
+                        ->setParameter('{{ string }}', $value)
+                        ->addViolation();
+                }
             }
         }
     }
