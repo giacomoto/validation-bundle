@@ -2,6 +2,7 @@
 
 namespace Luckyseven\Bundle\LuckysevenValidationBundle\Validator;
 
+use PhpParser\Node\Expr\Closure;
 use Symfony\Component\Validator\Constraint;
 
 /**
@@ -11,13 +12,13 @@ class UniqueConstraint extends Constraint
 {
     public string $entity;
     public string $fieldName;
-    public array $notIn;
+    public array $filters;
 
-    public function __construct(string $entity, string $fieldName, array $notIn = [], mixed $options = null, array $groups = null, mixed $payload = null)
+    public function __construct(string $entity, string $fieldName, array $filters, mixed $options = null, array $groups = null, mixed $payload = null)
     {
         $options["entity"] = $entity;
         $options["fieldName"] = $fieldName;
-        $options["notIn"] = $notIn;
+        $options["filters"] = $filters;
 
         parent::__construct($options, $groups, $payload);
     }

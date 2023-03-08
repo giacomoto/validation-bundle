@@ -12,13 +12,13 @@ trait TUniqueConstraints
     /**
      * @param string|null $entity
      * @param string $fieldName
-     * @param array $notIn
+     * @param array $filters
      * @return array
      */
-    protected function isUnique(string $entity, string $fieldName, array $notIn = []): array
+    protected function isUnique(string $entity, string $fieldName, array $filters = []): array
     {
         return [
-            new UniqueConstraint($entity, $fieldName, $notIn)
+            new UniqueConstraint($entity, $fieldName, $filters)
         ];
     }
 }

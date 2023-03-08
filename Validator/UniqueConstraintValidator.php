@@ -41,12 +41,15 @@ class UniqueConstraintValidator extends ConstraintValidator
 
         if ($constraint->entity) {
             $data = $this->entityManager->getRepository($constraint->entity)->findBy([$constraint->fieldName => $value]);
-            foreach ($data as $datum) {
-                if (!in_array($datum->getId(), $constraint->notIn)) {
-                    $this->context->buildViolation($constraint->message)
-                        ->setParameter('{{ string }}', $value)
-                        ->addViolation();
-                    break;
+
+            if (isset($constraint->filters["callback"])) {
+                foreach ($data as $datum) {
+                    if ($constraint->filters["callback"]($datum)) {
+                        $this->context->buildViolation($constraint->message)
+                            ->setParameter('{{ string }}', $value)
+                            ->addViolation();
+                        break;
+                    }
                 }
             }
         }
