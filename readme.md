@@ -37,19 +37,18 @@ composer recipes:install luckyseven/validation --force -v
 
 ## Usage
 Create a Validator Constraints ex: ```Validation/CreateUserConstraint.php```
-```
+```php
 <?php
 
 namespace App\Validation\User;
 
-use Luckyseven\Bundle\LuckysevenValidationBundle\Interface\ValidationConstraintInterface;
+use Luckyseven\Bundle\LuckysevenValidationBundle\Class\BaseConstraint;
 use Luckyseven\Bundle\LuckysevenValidationBundle\Trait\EmailConstraintTrait;
 use Luckyseven\Bundle\LuckysevenValidationBundle\Trait\PasswordConstraintTrait;
 use Luckyseven\Bundle\LuckysevenValidationBundle\Trait\StringConstraintTrait;
-use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Constraints\Collection;
 
-class CreateUserConstraint extends Constraint implements ValidationConstraintInterface
+class CreateUserConstraint extends BaseConstraint
 {
     use EmailConstraintTrait;
     use StringConstraintTrait;
@@ -58,7 +57,14 @@ class CreateUserConstraint extends Constraint implements ValidationConstraintInt
     public function getConstraints(): Collection
     {
         return new Collection([
-            'email' => $this->isTypeEmail(User::class),
+            'email' => new Optional([
+                ...$this->isTypeEmail(),
+                ...$this->isUnique(User::class, 'email'),
+            ]),
+            'username' => [
+                ...$this->isTypeString(),
+                ...$this->isUnique(User::class, 'username'),
+            ],
             'password' => $this->isTypePassword(),
             'lastName' => $this->isTypeString(),
             'firstName' => $this->isTypeString(),
@@ -66,9 +72,42 @@ class CreateUserConstraint extends Constraint implements ValidationConstraintInt
     }
 }
 ```
+Ex: ```Valiation?UpdateEmailContraint.php```
+```php
+<?php
+
+namespace App\Validation\Auth;
+
+use App\Entity\User;
+use Luckyseven\Bundle\LuckysevenValidationBundle\Class\BaseConstraint;
+use Luckyseven\Bundle\LuckysevenValidationBundle\Trait\TEmailConstraints;
+use Luckyseven\Bundle\LuckysevenValidationBundle\Trait\TUniqueConstraints;
+use Symfony\Component\Validator\Constraints\Collection;
+
+class UpdateEmailConstraint extends BaseConstraint
+{
+    use TEmailConstraints;
+    use TUniqueConstraints;
+
+    public function getConstraints(): Collection
+    {
+        // access Security Bundle
+        $user = $this->security->getUser();
+
+        return new Collection([
+            'email' => [
+                ...$this->isTypeEmail(),
+                ...$this->isUnique(User::class, 'email', [
+                    // entity is the User array found all by email
+                    "callback" => static fn($entity) => $entity->getId() != $user->getUserIdentifier()
+                ])
+            ]]);
+    }
+}
+```
 validate the Request body against the previously created validator.<br>
 Ex: ```Controller/AuthController.php```
-```
+```php
 <?php
 
 namespace App\Controller;
@@ -84,9 +123,6 @@ class AuthController extends AbstractController
 {
     ...
 
-    /**
-     * @throws ValidationException
-     */
     public function register(
         Request                     $request,
         ValidationService           $validationService,
