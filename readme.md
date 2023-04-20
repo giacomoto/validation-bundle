@@ -13,7 +13,7 @@ Luckyseven Validation Bundle uses Symfony's Validation bundle and Rolleworks Pas
         "symfony": {
             ...
             "endpoint": [
-                "https://api.github.com/repos/giacomoto/validation-recipes/contents/index.json",
+                "https://api.github.com/repos/giacomoto/validation-recipe/contents/index.json",
                 "flex://defaults"
             ]
         }
